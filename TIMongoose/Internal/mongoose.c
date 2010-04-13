@@ -175,14 +175,9 @@ typedef struct DIR {
 #include <pthread.h>
 //#define	SSL_LIB			"libssl.so"
 
-#if TARGET_OS_IPHONE
-  #define SSL_LIB "libssl_arm.a"
-  #define CRYPTO_LIB "libcrypto_arm.a"
-#else
-  #define SSL_LIB "libssl.dylib"
-  //#define	CRYPTO_LIB		"libcrypto.so"
-  #define CRYPTO_LIB "libcrypto.dylib"
-#endif
+#define SSL_LIB "libssl.dylib"
+//#define	CRYPTO_LIB		"libcrypto.so"
+#define CRYPTO_LIB "libcrypto.dylib"
 
 #define	DIRSEP			'/'
 #define	IS_DIRSEP_CHAR(c)	((c) == '/')
@@ -4028,7 +4023,7 @@ set_ssl_option(struct mg_context *ctx, const char *pem)
 	if (load_dll(ctx, SSL_LIB, ssl_sw) == FALSE ||
 	    load_dll(ctx, CRYPTO_LIB, crypto_sw) == FALSE)
 		return (FALSE);
-     
+    
 	/* Initialize SSL crap */
 	SSL_library_init();
 
