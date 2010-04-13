@@ -31,6 +31,14 @@ with a comma-separated list, ending with a zero, or use:
     [engine startMongooseOnPortsInString:@"8080, 443"];
 including one or more ports (no trailing zero).
 
+###SSL Support
+TIMongoose now supports connections via SSL. If you want to have SSL supported on the iPhone, you'll need to add static OpenSSL libraries to your iPhone device target; these are included in the iPhone example application.
+
+To serve secure connections, you'll need to set a certificate path *before* starting the server. For any port you wish to be able to serve securely, you must include an `s` on the end of the port number, like this:
+    TIMongooseEngine *engine [[TIMongooseEngine alloc] initWithDelegate:self];
+    [engine setSslCertificateFilePath:[[NSBundle mainBundle] pathForResource:@"cert" ofType:@"pem"]];
+    [engine startMongooseOnPortsInString:@"8080, 443s"];
+
 ###Data Providers
 You'll need to provide at least one data provider in order to serve requests to the server. At present, TIMongoose includes a file-based data provider to serve pre-existing html and image files, and a selector-based data provider, which will call methods based on requested routes, to generate responses. Let's look at the file-based data provider first.
 

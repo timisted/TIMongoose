@@ -66,8 +66,8 @@
 		385E51F31122F0F8005CE937 /* MyMongooseDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMongooseDataProvider.m; path = Classes/MyMongooseDataProvider.m; sourceTree = "<group>"; };
 		3861685F11746F46002D8045 /* cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cert.pem; sourceTree = "<group>"; };
 		386168951174734C002D8045 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		386168F81174765D002D8045 /* libcrypto_arm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto_arm.a; path = ../../TIMongoose/Internal/libcrypto_arm.a; sourceTree = "<group>"; };
-		386168F91174765D002D8045 /* libssl_arm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl_arm.a; path = ../../TIMongoose/Internal/libssl_arm.a; sourceTree = "<group>"; };
+		386168F81174765D002D8045 /* libcrypto_arm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto_arm.a; sourceTree = "<group>"; };
+		386168F91174765D002D8045 /* libssl_arm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl_arm.a; sourceTree = "<group>"; };
 		386169411174790F002D8045 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		386169421174790F002D8045 /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
 		386169431174790F002D8045 /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
