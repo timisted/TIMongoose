@@ -32,6 +32,7 @@
     NSObject <TIMongooseOperationDelegate> *_delegate;
     struct mg_context *_mongooseContext;
     NSString *_ports;
+    NSString *_sslCertificatePath;
     NSMutableDictionary *_dataProviders;
     BOOL _supportsNameBasedVirtualHosts;
     
@@ -54,6 +55,7 @@
 @property (assign) BOOL supportsNameBasedVirtualHosts;
 @property (assign) struct mg_context *mongooseContext;
 @property (retain) NSString *ports;
+@property (retain) NSString *sslCertificatePath;
 @property (assign) BOOL shouldStart, shouldStop, shouldRestart;
 
 @end

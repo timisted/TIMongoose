@@ -73,6 +73,10 @@
 - (TIMongooseDataProvider *)dataProviderForHost:(NSString *)aHost;
 
 #pragma mark Server Controls
+/* Set the path of an SSL certificate. Must be used before starting Mongoose on a secure
+   port like 443. */
+- (void)setSslCertificateFilePath:(NSString *)aPath;
+
 /* Each of these methods returns immediately; use the delegate callbacks to determine
    whether the start/stop completed successfully. */
 - (void)startMongooseOnPort:(int)aPort;

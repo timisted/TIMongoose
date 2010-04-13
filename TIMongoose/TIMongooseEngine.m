@@ -127,6 +127,11 @@
 
 #pragma mark -
 #pragma mark Mongoose Control
+- (void)setSslCertificateFilePath:(NSString *)aPath
+{
+    [[self mongooseOperation] setSslCertificatePath:aPath];
+}
+
 - (void)startMongooseOnPort:(int)aPort
 {
     [self startMongooseOnPorts:aPort, 0];

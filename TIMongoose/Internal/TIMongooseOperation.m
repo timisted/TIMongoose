@@ -48,7 +48,7 @@ NSString * const kTIMongooseDefaultHostDataProvider = @"kTIMongooseDefaultHostDa
 @implementation TIMongooseOperation
 
 @synthesize delegate = _delegate, mongooseContext = _mongooseContext, ports = _ports, supportsNameBasedVirtualHosts = _supportsNameBasedVirtualHosts;
-@synthesize shouldStart = _shouldStart, shouldStop = _shouldStop, shouldRestart = _shouldRestart;
+@synthesize sslCertificatePath = _sslCertificatePath, shouldStart = _shouldStart, shouldStop = _shouldStop, shouldRestart = _shouldRestart;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -197,6 +197,11 @@ static void http_error_callback(struct mg_connection *conn,
     
     if( ![self mongooseContext] ) {
         [self _notifyMongooseFailedToStart]; return;
+    }
+    
+    if( [self sslCertificatePath] && [[self sslCertificatePath] length] > 3 ) {
+        if( !mg_set_option([self mongooseContext], "ssl_cert", [[self sslCertificatePath] UTF8String]) )
+            NSLog(@"Failed to set SSL Certificate");
     }
     
     if( !mg_set_option([self mongooseContext], "ports", [[self ports] UTF8String]) ) {

@@ -60,6 +60,7 @@
         [_mongooseEngine setSupportsNameBasedVirtualHosts:YES];
         [_mongooseEngine setDataProvider:[self mongooseDataProvider] forHost:@"mongoose.local"];
         [_mongooseEngine setDataProvider:[self mongooseFileBasedDataProvider] forHost:@"mongooseFile.local"];
+        [_mongooseEngine setSslCertificateFilePath:[[NSBundle mainBundle] pathForResource:@"cert" ofType:@"pem"]];
     }
     
     return _mongooseEngine;
