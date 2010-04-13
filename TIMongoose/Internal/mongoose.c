@@ -173,11 +173,8 @@ typedef struct DIR {
 #include <dirent.h>
 #include <dlfcn.h>
 #include <pthread.h>
-//#define	SSL_LIB			"libssl.so"
-
-#define SSL_LIB "libssl.dylib"
-//#define	CRYPTO_LIB		"libcrypto.so"
-#define CRYPTO_LIB "libcrypto.dylib"
+#define	SSL_LIB			"libssl.so"
+#define	CRYPTO_LIB		"libcrypto.so"
 
 #define	DIRSEP			'/'
 #define	IS_DIRSEP_CHAR(c)	((c) == '/')
@@ -228,6 +225,27 @@ typedef void * (*mg_thread_func_t)(void *);
 
 static const char *http_500_error = "Internal Server Error";
 
+
+/*
+ * Dynamically loaded SSL functionality
+ */
+struct ssl_func {
+	const char	*name;		/* SSL function name	*/
+	void		(*ptr)(void);	/* Function pointer	*/
+};
+
+/* FOLLOWING HAS BEEN CHANGED BY TIM ISTED TO ALLOW SSL ON IPHONE USING STATIC OPENSSL LIBS */
+#ifdef __APPLE__
+#include "TargetConditionals.h"
+#undef SSL_LIB
+#undef CRYPTO_LIB
+#define SSL_LIB "libssl.dylib"
+#define CRYPTO_LIB "libcrypto.dylib"
+#endif
+
+#if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+#include "openssl/ssl.h"
+#else
 /*
  * Snatched from OpenSSL includes. I put the prototypes here to be independent
  * from the OpenSSL source installation. Having this, mongoose + SSL can be
@@ -242,13 +260,6 @@ typedef struct ssl_ctx_st SSL_CTX;
 #define SSL_FILETYPE_PEM	1
 #define	CRYPTO_LOCK		1
 
-/*
- * Dynamically loaded SSL functionality
- */
-struct ssl_func {
-	const char	*name;		/* SSL function name	*/
-	void		(*ptr)(void);	/* Function pointer	*/
-};
 
 #define	SSL_free(x)	(* (void (*)(SSL *)) ssl_sw[0].ptr)(x)
 #define	SSL_accept(x)	(* (int (*)(SSL *)) ssl_sw[1].ptr)(x)
@@ -312,6 +323,7 @@ static struct ssl_func	crypto_sw[] = {
 	{"CRYPTO_set_id_callback",	NULL},
 	{NULL,				NULL}
 };
+#endif /* !TARGET_OS_IPHONE */
 
 /*
  * Month names
@@ -4020,9 +4032,11 @@ set_ssl_option(struct mg_context *ctx, const char *pem)
 	SSL_CTX		*CTX;
 	int		i, size, retval = FALSE;
 
-	if (load_dll(ctx, SSL_LIB, ssl_sw) == FALSE ||
+#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    if (load_dll(ctx, SSL_LIB, ssl_sw) == FALSE ||
 	    load_dll(ctx, CRYPTO_LIB, crypto_sw) == FALSE)
 		return (FALSE);
+#endif
     
 	/* Initialize SSL crap */
 	SSL_library_init();
