@@ -39,6 +39,8 @@ To serve secure connections, you'll need to set a certificate path *before* star
     [engine setSslCertificateFilePath:[[NSBundle mainBundle] pathForResource:@"cert" ofType:@"pem"]];
     [engine startMongooseOnPortsInString:@"8080, 443s"];
 
+The example iPhone application doesn't provide a certificate, so you'll need to generate your own.
+
 ###Data Providers
 You'll need to provide at least one data provider in order to serve requests to the server. At present, TIMongoose includes a file-based data provider to serve pre-existing html and image files, and a selector-based data provider, which will call methods based on requested routes, to generate responses. Let's look at the file-based data provider first.
 
@@ -155,10 +157,9 @@ A sample iPhone application is included. A Mac version will follow shortly.
 ##To Do List
 There are lots of features not yet exposed or implemented:
 
-*  Refactoring of internal operation handling for server control.
-*  Regex matching of hostnames to allow e.g. "multipleusernames.domain.com" to resolve to one provider
- * Authentication
- * SSL
- * Logging
+* Refactoring of internal operation handling for server control.
+* Regex matching of hostnames to allow e.g. "multipleusernames.domain.com" to resolve to one provider
+* Authentication
+* Logging
 
- *and lots more besides!*
+*and lots more besides!*

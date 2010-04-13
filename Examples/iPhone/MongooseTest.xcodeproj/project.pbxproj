@@ -57,7 +57,7 @@
 		289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipsideViewController.m; path = Classes/FlipsideViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MongooseTest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MongooseTest_Prefix.pch; sourceTree = "<group>"; };
-		3825B34F11748FB70062408D /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		3825B99B117495810062408D /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.markdown; path = ../../README.markdown; sourceTree = SOURCE_ROOT; };
 		3854A1831121883C00F9B13F /* TIMongooseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TIMongooseResponse.h; sourceTree = "<group>"; };
 		3854A1841121883C00F9B13F /* TIMongooseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TIMongooseResponse.m; sourceTree = "<group>"; };
 		3854A1EC1121924D00F9B13F /* kitteh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitteh.jpg; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 		38C3CC261105CFF1007D72FD /* TIMongoose */ = {
 			isa = PBXGroup;
 			children = (
-				3825B34F11748FB70062408D /* README.markdown */,
+				3825B99B117495810062408D /* README.markdown */,
 				386F4DE4112832F800FE8796 /* LICENSE */,
 				38F6CB8B113190AA006F59DE /* TIMongoose.h */,
 				38C3CC361105D0EB007D72FD /* TIMongooseEngine.h */,
