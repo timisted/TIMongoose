@@ -48,7 +48,8 @@ NSString * const kTIMongooseDefaultHostDataProvider = @"kTIMongooseDefaultHostDa
 @implementation TIMongooseOperation
 
 @synthesize delegate = _delegate, mongooseContext = _mongooseContext, ports = _ports, supportsNameBasedVirtualHosts = _supportsNameBasedVirtualHosts;
-@synthesize sslCertificatePath = _sslCertificatePath, shouldStart = _shouldStart, shouldStop = _shouldStop, shouldRestart = _shouldRestart;
+@synthesize sslCertificatePath = _sslCertificatePath, mongooseServerIsRunning = _mongooseServerIsRunning;
+@synthesize shouldStart = _shouldStart, shouldStop = _shouldStop, shouldRestart = _shouldRestart;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -210,6 +211,7 @@ static void http_error_callback(struct mg_connection *conn,
     mg_set_uri_callback([self mongooseContext], "*", &http_request_callback, self);
     mg_set_error_callback([self mongooseContext], 0, &http_error_callback, self);
     //NSLog(@"Mongoose Started");
+    _mongooseServerIsRunning = YES;
     [self _notifyMongooseStartedOnPorts:[self ports]];
 }
 
@@ -218,6 +220,7 @@ static void http_error_callback(struct mg_connection *conn,
     [self _notifyMongooseAboutToStop];
     mg_stop([self mongooseContext]);
     //NSLog(@"Mongoose Stopped");
+    _mongooseServerIsRunning = NO;
     [self _notifyMongooseStopped];
 }
 

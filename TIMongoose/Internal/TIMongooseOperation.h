@@ -39,6 +39,8 @@
     BOOL _shouldStart;
     BOOL _shouldStop;
     BOOL _shouldRestart;
+    
+    BOOL _mongooseServerIsRunning;
 }
 
 #pragma mark Designated Initializer
@@ -57,6 +59,7 @@
 @property (retain) NSString *ports;
 @property (retain) NSString *sslCertificatePath;
 @property (assign) BOOL shouldStart, shouldStop, shouldRestart;
+@property (readonly) BOOL mongooseServerIsRunning;
 
 @end
 

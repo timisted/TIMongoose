@@ -95,6 +95,9 @@
    Will return an external ip if available. */
 - (NSString *)localIPAddress;
 
+/* Returns YES if the server is running successfully, otherwise NO. */
+- (BOOL)isRunning;
+
 #pragma mark Properties
 @property (nonatomic, assign) struct mg_context *mongooseContext;
 @property (nonatomic, assign) NSObject <TIMongooseEngineDelegate> *delegate;

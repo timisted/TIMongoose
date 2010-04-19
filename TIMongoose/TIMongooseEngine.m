@@ -171,6 +171,11 @@
     [[self mongooseOperation] setShouldRestart:YES];
 }
 
+- (BOOL)isRunning
+{
+    return [[self mongooseOperation] mongooseServerIsRunning];
+}
+
 #pragma mark -
 #pragma mark TIMongooseOperation Delegate Messages
 - (void)handleMongooseOperationDelegateMessage:(NSDictionary *)dictionary
