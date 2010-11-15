@@ -53,6 +53,7 @@ extern NSString *TIMongooseResponseContentTypeTextPlain;
 extern NSString *TIMongooseResponseContentTypeImageJPEG;
 extern NSString *TIMongooseResponseContentTypeImageGIF;
 extern NSString *TIMongooseResponseContentTypeImagePNG;
+extern NSString *TIMongooseResponseContentTypeApplicationJSON;
 
 typedef enum _TIMongooseHTTPResponseType {
     TIMongooseHTTPResponseType100Continue = 100,

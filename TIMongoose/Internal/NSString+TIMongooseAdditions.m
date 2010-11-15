@@ -41,6 +41,9 @@
         ipString = [ipString stringByAppendingFormat:@"%d.", (aLong & 0xFF000000) >> 24];
     }
     
+    if( [ipString length] < 1 ) return nil;
+    NSLog(@"ipString = %@", ipString);
+    
     ipString = [ipString substringToIndex:([ipString length] - 1)];
     
     return ipString;

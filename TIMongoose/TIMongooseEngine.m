@@ -100,6 +100,7 @@
 // Return the localized IP address - iPhone version from Erica Sadun's cookbook
 - (NSString *)localIPAddress
 {
+    return nil;
 #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
     char baseHostName[255];
     int success = gethostname(baseHostName, 255);

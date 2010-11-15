@@ -203,11 +203,11 @@ typedef int SOCKET;
 #define	ARRAY_SIZE(array)	(sizeof(array) / sizeof(array[0]))
 #define	DEBUG_MGS_PREFIX	"*** Mongoose debug *** "
 
-#if defined(DEBUG)
+#if defined(MONGOOSE_DEBUG)
 #define	DEBUG_TRACE(x) do {printf x; putchar('\n'); fflush(stdout);} while (0)
 #else
 #define DEBUG_TRACE(x)
-#endif /* DEBUG */
+#endif /* MONGOOSE_DEBUG */
 
 /*
  * Darwin prior to 7.0 and Win32 do not have socklen_t

@@ -148,3 +148,4 @@ NSString *TIMongooseResponseContentTypeTextXML = @"text/xml";
 NSString *TIMongooseResponseContentTypeImageJPEG = @"image/jpeg";
 NSString *TIMongooseResponseContentTypeImageGIF = @"image/gif";
 NSString *TIMongooseResponseContentTypeImagePNG = @"image/png";
+NSString *TIMongooseResponseContentTypeApplicationJSON = @"application/json";
