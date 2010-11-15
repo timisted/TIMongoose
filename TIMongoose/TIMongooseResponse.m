@@ -38,11 +38,12 @@
 #pragma mark Initialization and Deallocation
 - (id)initWithStatusCode:(int)aCode contentType:(NSString *)aType responseData:(NSData *)someData
 {
-    if( self = [super init] ) {
-        _statusCode = aCode;
-        _responseData = [someData retain];
-        _contentType = [aType retain];
-    }
+    self = [super init];
+    if( !self ) return nil;
+    
+    _statusCode = aCode;
+    _responseData = [someData retain];
+    _contentType = [aType retain];
     
     return self;
 }

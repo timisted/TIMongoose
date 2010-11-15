@@ -33,10 +33,11 @@
 #pragma mark Initialization and Deallocation
 - (id)initWithDelegate:(NSObject <TIMongooseEngineDelegate>*)aDelegate
 {
-    if( self = [super init] ) {
-        _delegate = aDelegate;
-        _operationQueue = [[NSOperationQueue alloc] init];
-    }
+    self = [super init];
+    if( !self ) return nil;
+    
+    _delegate = aDelegate;
+    _operationQueue = [[NSOperationQueue alloc] init];
     
     return self;
 }
@@ -85,6 +86,7 @@
 #pragma mark Accessor Methods
 - (TIMongooseOperation *)mongooseOperation
 {
+    @synchronized( _mongooseOperation ) {
     if( _mongooseOperation ) return _mongooseOperation;
     
     _mongooseOperation = [[TIMongooseOperation alloc] initWithDelegate:self];
@@ -92,6 +94,7 @@
     [[self operationQueue] addOperation:_mongooseOperation];
     
     return _mongooseOperation;
+    }
 }
 
 // Return the localized IP address - iPhone version from Erica Sadun's cookbook
@@ -147,7 +150,7 @@
     {                                   // so we'll handle it separately.
         [portsString appendFormat:@"%i,", firstPort];
         va_start(argumentList, firstPort);          // Start scanning for arguments after firstObject.
-        while (eachPort = va_arg(argumentList, int)) // As many times as we can get an argument of type "id"
+        while( (eachPort = va_arg(argumentList, int)) ) // As many times as we can get an argument of type "id"
             [portsString appendFormat:@"%i,", eachPort];               // that isn't nil, add it to self's contents.
         va_end(argumentList);
     }
@@ -216,6 +219,10 @@
         case TIMongooseOperationDelegateMessageTypeStoppedMongoose:
             if( [[self delegate] respondsToSelector:@selector(mongooseEngineDidStopMongoose:)] )
                 [[self delegate] mongooseEngineDidStopMongoose:self];
+            break;
+        
+        case TIMongooseOperationDelegateMessageTypeUnknown:
+        default:
             break;
     }
 }

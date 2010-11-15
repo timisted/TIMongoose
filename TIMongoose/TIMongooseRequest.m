@@ -34,14 +34,15 @@
 #pragma mark Initialization and Deallocation
 - (id)initWithMGRequestInfo:(const struct mg_request_info *)anMGRequestInfoStruct
 {
-    if( self = [super init] ) {
-        _mg_info = anMGRequestInfoStruct;
-    }
+    self = [super init];
+    if( !self ) return nil;
+    
+    _mg_info = anMGRequestInfoStruct;
     
     return self;
 }
 
-+ (id)mongooseRequestWithMGRequestInfo:(struct mg_request_info *)anMGRequestInfoStruct
++ (id)mongooseRequestWithMGRequestInfo:(const struct mg_request_info *)anMGRequestInfoStruct
 {
     return [[[self alloc] initWithMGRequestInfo:anMGRequestInfoStruct] autorelease];
 }

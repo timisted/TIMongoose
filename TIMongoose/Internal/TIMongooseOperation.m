@@ -55,10 +55,11 @@ NSString * const kTIMongooseDefaultHostDataProvider = @"kTIMongooseDefaultHostDa
 #pragma mark Initialization and Deallocation
 - (id)initWithDelegate:(NSObject *)aDelegate
 {
-    if( self = [super init] ) {
-        _delegate = aDelegate;
-        _dataProviders = [[NSMutableDictionary alloc] initWithCapacity:10];
-    }
+    self = [super init];
+    if( !self ) return nil;
+    
+    _delegate = aDelegate;
+    _dataProviders = [[NSMutableDictionary alloc] initWithCapacity:10];
     
     return self;
 }

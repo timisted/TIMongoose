@@ -40,12 +40,12 @@
 #pragma mark Initialization and Deallocation
 - (id)init
 {
-    if( self = [super init] )
-    {
-        _routingSelectors = [[NSMutableArray alloc] initWithCapacity:10];
-        _errorSelectors = [[NSMutableArray alloc] initWithCapacity:10];
-    }
+    self = [super init];
+    if( !self ) return nil;
     
+    _routingSelectors = [[NSMutableArray alloc] initWithCapacity:10];
+    _errorSelectors = [[NSMutableArray alloc] initWithCapacity:10];
+        
     [self performSelector:@selector(setUpSelectors) withObject:nil afterDelay:0];
     
     return self;
@@ -149,20 +149,23 @@
 
 - (id)initWithSelector:(SEL)aSelector forRouteMatchingString:(NSString *)aString
 {
-    if( self = [super init] ) {
-        _selector = aSelector;
-        _routeString = [aString copy];
-    }
+    self = [super init];
+    if( !self ) return nil;
+    
+    _selector = aSelector;
+    _routeString = [aString copy];
+    _routePredicate = [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", _routeString] retain];
     
     return self;
 }
 
 - (id)initWithSelector:(SEL)aSelector forErrorCode:(int)aCode
 {
-    if( self = [super init] ) {
-        _selector = aSelector;
-        _errorCode = aCode;
-    }
+    self = [super init];
+    if( !self ) return nil;
+    
+    _selector = aSelector;
+    _errorCode = aCode;
     
     return self;
 }
@@ -182,14 +185,6 @@
     [_routeString release];
     [_routePredicate release];
     [super dealloc];
-}
-
-- (NSPredicate *)routePredicate
-{
-    if( !_routePredicate )
-        _routePredicate = [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", [self routeString]] retain];
-    
-    return _routePredicate;
 }
 
 @end

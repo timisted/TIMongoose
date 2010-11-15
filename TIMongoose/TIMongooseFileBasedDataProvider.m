@@ -36,9 +36,12 @@
 #pragma mark Initialization and Deallocation
 - (id)initWithRootFilePath:(NSString *)aPath
 {
-    if( self = [super init] ) {
-        _rootFilePath = [aPath retain];
-    }
+    self = [super init];
+    if( !self ) return nil;
+    
+    if( !aPath ) 
+        aPath = [[NSBundle mainBundle] bundlePath];
+    _rootFilePath = [aPath retain];
     
     return self;
 }
@@ -51,13 +54,6 @@
 
 #pragma mark -
 #pragma mark Accessors
-- (NSString *)rootFilePath
-{
-    if( !_rootFilePath ) _rootFilePath = [[[NSBundle mainBundle] bundlePath] retain];
-    
-    return _rootFilePath;
-}
-
 - (NSArray *)possibleIndexFileNames
 {
     static NSArray *sFileNames = nil;
