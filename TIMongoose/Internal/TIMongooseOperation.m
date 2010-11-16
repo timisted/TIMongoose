@@ -116,8 +116,10 @@ static void http_request_callback(struct mg_connection *conn,
     if( [[mongooseResponse headersForOutput] length] > 0 )
        mg_printf(conn, [[mongooseResponse headersForOutput] UTF8String]);
     
-    if( [[mongooseResponse dataForOutput] length] > 0 )
+    if( [[mongooseResponse dataForOutput] length] > 0 ) {
+        if( conn ) NSLog(@"Conn is not nil");
         mg_write(conn, [[mongooseResponse dataForOutput] bytes], [[mongooseResponse dataForOutput] length]);
+    }
 
     [pool release];
 }

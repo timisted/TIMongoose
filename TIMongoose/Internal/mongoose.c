@@ -1487,7 +1487,7 @@ push(FILE *fp, SOCKET sock, SSL *ssl, const char *buf, int64_t len)
 			if (ferror(fp))
 				n = -1;
 		} else {
-			n = send(sock, buf + sent, k, 0);
+			n = send(sock, buf + sent, (size_t)k, 0);
 		}
 
 		if (n < 0)
