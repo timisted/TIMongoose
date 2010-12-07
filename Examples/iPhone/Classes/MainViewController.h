@@ -45,8 +45,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *portsLabel;
 @property (nonatomic, retain) IBOutlet UILabel *portsLabelLabel;
 @property (nonatomic, readonly) TIMongooseEngine *mongooseEngine;
-@property (retain) MyMongooseDataProvider *mongooseDataProvider;
-@property (retain) TIMongooseFileBasedDataProvider *mongooseFileBasedDataProvider;
+@property (nonatomic, retain) MyMongooseDataProvider *mongooseDataProvider;
+@property (nonatomic, retain) TIMongooseFileBasedDataProvider *mongooseFileBasedDataProvider;
 
 - (IBAction)showInfo;
 - (IBAction)startStopAction:(id)sender;

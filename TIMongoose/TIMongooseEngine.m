@@ -86,7 +86,6 @@
 #pragma mark Accessor Methods
 - (TIMongooseOperation *)mongooseOperation
 {
-    @synchronized( _mongooseOperation ) {
     if( _mongooseOperation ) return _mongooseOperation;
     
     _mongooseOperation = [[TIMongooseOperation alloc] initWithDelegate:self];
@@ -94,7 +93,6 @@
     [[self operationQueue] addOperation:_mongooseOperation];
     
     return _mongooseOperation;
-    }
 }
 
 // Return the localized IP address - iPhone version from Erica Sadun's cookbook

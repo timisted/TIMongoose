@@ -22,6 +22,9 @@
 #import "TIMongoose.h"
 #import "NSString+TIMongooseAdditions.h"
 
+// For sleep() function - to avoid warning under iOS target compilation
+#include <unistd.h>
+
 #pragma mark Class Extensions (Private Methods)
 @interface TIMongooseOperation ()
 
@@ -79,7 +82,7 @@ NSString * const kTIMongooseDefaultHostDataProvider = @"kTIMongooseDefaultHostDa
 #pragma mark Main Function
 -(void)main {
     @try {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         
         while( YES ) {
             if ( [self isCancelled] ) return;
@@ -117,7 +120,6 @@ static void http_request_callback(struct mg_connection *conn,
        mg_printf(conn, [[mongooseResponse headersForOutput] UTF8String]);
     
     if( [[mongooseResponse dataForOutput] length] > 0 ) {
-        if( conn ) NSLog(@"Conn is not nil");
         mg_write(conn, [[mongooseResponse dataForOutput] bytes], [[mongooseResponse dataForOutput] length]);
     }
 

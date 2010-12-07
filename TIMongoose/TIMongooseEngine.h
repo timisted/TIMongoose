@@ -92,7 +92,8 @@
 
 #pragma mark Miscellaneous
 /* Returns the local ip address of the machine; works on iPhone, Simulator and Mac Desktop.
-   Will return an external ip if available. */
+   Will return an external ip if available.
+   Temporarily disabled due to crashes in recent OS versions... */
 - (NSString *)localIPAddress;
 
 /* Returns YES if the server is running successfully, otherwise NO. */
