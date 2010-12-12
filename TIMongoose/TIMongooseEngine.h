@@ -101,7 +101,7 @@
 
 #pragma mark Properties
 @property (nonatomic, assign) struct mg_context *mongooseContext;
-@property (nonatomic, assign) NSObject <TIMongooseEngineDelegate> *delegate;
+@property (nonatomic, assign)  NSObject <TIMongooseEngineDelegate> *delegate;
 @property (readonly, retain) TIMongooseOperation *mongooseOperation;
 @property (retain) NSOperationQueue *operationQueue;
 
